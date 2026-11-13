@@ -51,6 +51,16 @@ It installs only `openai tiktoken python-dotenv` with pip, reads `DEEPSEEK_API_K
 Secrets, runs the stages below with `PY=python`, and copies `results/` and `logs/` to Google
 Drive after each stage. A CPU runtime is enough.
 
+### How the reported results were produced
+
+The numbers in `repro_results/` come from the notebook above with the same scripts and settings
+(`MODEL=deepseek-chat`, `TRIALS=3`, `MAX_TRAIN=60`, `MAX_VAL=100`, `EVAL_STEPS=20`), with four differences
+in how it was run: (1) the `baseline` and `train` stages were started at the same time in the background
+(`nohup ... &`) instead of one after the other, each writing to its own results folder; (2) `WORKERS=20`
+instead of 10, which only changes how many API requests run in parallel, not the answers; (3) the optional
+`robust_train` stage was run; (4) `PRICE_IN=0.14` and `PRICE_OUT=0.28` (USD per 1M tokens, DeepSeek list
+price) were set for the cost estimate. The code was uploaded to Colab as a zip.
+
 ## Run locally
 
 ```bash
