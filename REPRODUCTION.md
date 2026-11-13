@@ -28,12 +28,14 @@ with my own DeepSeek API key, and every reported number comes from those runs (s
 | Modification: robust/tolerant grader option | `eval/finance/grading.py`, `--grader {strict,robust,tolerant}` (default `strict` = original) |
 | tiktoken fallback | no crash when the encoding file cannot be downloaded |
 | Reproduction scripts | `scripts/run_repro.sh`, `scripts/summarize.py`, this file |
+| Colab notebook (2 commits) | `notebooks/colab_repro.ipynb`: pip install, key from Colab Secrets, Drive backup |
+| Reproduction results | `repro_results/`: summary tables, per-question test predictions, learned playbooks |
 
 ## Install
 
 ```bash
-git clone <this repo> && cd ace
-git checkout repro-ftec5660
+git clone -b repro-ftec5660 https://github.com/lllllllle8/FTEC5660-ace.git
+cd FTEC5660-ace
 curl -LsSf https://astral.sh/uv/install.sh | sh   # if uv is not installed
 uv sync                                            # Python 3.12, see .python-version
 cp .env.example .env                               # then put your key in .env:
@@ -80,6 +82,20 @@ Use `PY=python` if you installed the dependencies with pip instead of uv.
 
 Results are not directly comparable to the paper because the served DeepSeek model
 version and the training subset size differ.
+
+## Results
+
+Formula test split (200 questions), `deepseek-chat` (served id `deepseek-flash`), temperature 0.
+
+| Condition | Paper | Mine, strict grader (mean ± std) | Robust grader | Tolerant (±0.01) |
+|---|---|---|---|---|
+| Base LLM, empty playbook | 67.5 | 68.3 ± 1.3 (n=3) | 68.5 ± 1.0 | 72.7 ± 1.2 |
+| ACE offline, GT feedback | 85.5 (500 train) | 83.8 ± 0.8 (n=3, 60 train) | 83.8 ± 0.8 | 87.0 ± 0.9 |
+| ACE offline, robust-grader feedback | n/a | 81.0 (n=1) | 81.0 | 84.0 |
+
+ACE improves accuracy by +15.5 points (paper: +18.0). About half of the gain comes from removing
+ratio-versus-percent errors (16.3 to 0 per run), the rest from fewer wrong values (32.0 to 14.7).
+Total API cost was under $1. Full tables, error taxonomy and cost: [repro_results/summary.md](repro_results/summary.md).
 
 ## The modification
 
