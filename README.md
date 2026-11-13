@@ -27,6 +27,8 @@
 
 ---
 
+> **FTEC5660 reproducibility fork:** see [REPRODUCTION.md](REPRODUCTION.md) for the DeepSeek setup, the Formula-task reproduction scripts and the grader modification.
+
 ## 🎯 Overview
 
 ACE (Agentic Context Engineering) is a framework that enables large language models to self-improve by treating contexts as evolving playbooks that accumulate, refine, and organize strategies through a modular process of generation, reflection, and curation. Unlike traditional approaches that suffer from **brevity bias** and **context collapse**, ACE introduces structured, incremental updates guided by a grow-and-refine principle, preserving detailed, domain-specific knowledge while remaining comprehensive and scalable throughout adaptation.
