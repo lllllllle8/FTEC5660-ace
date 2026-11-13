@@ -27,7 +27,7 @@
 
 ---
 
-> **FTEC5660 reproducibility fork:** see [REPRODUCTION.md](REPRODUCTION.md) for the DeepSeek setup, the Formula-task reproduction scripts and the grader modification.
+> **FTEC5660 reproducibility fork:** see [REPRODUCTION.md](REPRODUCTION.md) for the DeepSeek setup, the Formula-task reproduction scripts and the grader modification. Prepared with AI assistance (see the AI assistance section there).
 
 ## 🎯 Overview
 

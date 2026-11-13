@@ -11,6 +11,13 @@ the **Formula** (XBRL financial numerical reasoning) accuracy of
 
 and makes one measurable modification (a robust answer grader, see below).
 
+## AI assistance
+
+This reproduction was carried out with Claude (Anthropic) as an AI assistant, which FTEC5660 permits
+and encourages. Claude helped read the codebase, write the code changes on this branch, build the run
+scripts and the Colab notebook, and draft the report. All experiments were run by me on Google Colab
+with my own DeepSeek API key, and every reported number comes from those runs (see `repro_results/`).
+
 ## What changed vs upstream (one commit each)
 
 | Commit | Purpose |
