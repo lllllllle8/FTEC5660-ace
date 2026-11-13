@@ -161,8 +161,16 @@ def extract_answer(response):
         
         return "No final answer found"
     
-enc = tiktoken.get_encoding("cl100k_base")
+try:
+    enc = tiktoken.get_encoding("cl100k_base")
+except Exception as _e:  # e.g. no access to openaipublic.blob.core.windows.net
+    enc = None
+    print(f"[WARN] tiktoken encoding unavailable ({type(_e).__name__}); "
+          f"falling back to approximate token counts (len/4). Only playbook stats are affected.")
+
 def count_tokens(prompt: str) -> int:
+    if enc is None:
+        return max(1, len(prompt) // 4)
     return len(enc.encode(prompt))
 
 
