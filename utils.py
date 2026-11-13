@@ -235,7 +235,8 @@ def evaluate_test_set(data_processor, generator, playbook, test_samples,
 
     results = {
         "correct": 0, "total": 0, "no_answer": 0,
-        "answers": [], "targets": [], "errors": []
+        "answers": [], "targets": [], "errors": [],
+        "records": [], "dropped": []
     }
 
     # Use a wrapper to pass data_processor to the evaluation function
@@ -253,6 +254,8 @@ def evaluate_test_set(data_processor, generator, playbook, test_samples,
             
             if error:
                 print(error)
+                # Reproducibility: keep track of samples silently excluded from accuracy
+                results["dropped"].append(error)
                 continue
 
             if result and result["success"]:
@@ -260,6 +263,12 @@ def evaluate_test_set(data_processor, generator, playbook, test_samples,
                 results["total"] += 1
                 results["answers"].append(result["final_answer"])
                 results["targets"].append(result["target"])
+                results["records"].append({
+                    "index": result["index"],
+                    "prediction": result["final_answer"],
+                    "ground_truth": result["target"],
+                    "is_correct": bool(result["is_correct"])
+                })
                 
                 if not result["is_correct"]:
                     results["errors"].append({
@@ -282,18 +291,25 @@ def evaluate_test_set(data_processor, generator, playbook, test_samples,
             "accuracy": accuracy,
             "correct": results["correct"],
             "total": results["total"],
-            "no_answer": results["no_answer"]
+            "no_answer": results["no_answer"],
+            "requested": len(test_samples),
+            "dropped": len(results["dropped"])
         }
         
         error_logs = {
             "accuracy": accuracy,
-            "errors": results["errors"]
+            "errors": results["errors"],
+            "records": sorted(results["records"], key=lambda r: r["index"]),
+            "dropped_errors": results["dropped"]
         }
         
         print(f"\n📊 Final Accuracy: {accuracy:.3f} ({results['correct']}/{results['total']})")
     else:
-        results = {"accuracy": 0.0, "correct": 0, "total": 0}
-        error_logs = {}
+        # Bug fix: original code assigned `results` here but returned the undefined
+        # `final_results`, raising UnboundLocalError when every sample failed.
+        final_results = {"accuracy": 0.0, "correct": 0, "total": 0, "no_answer": 0,
+                         "requested": len(test_samples), "dropped": len(results["dropped"])}
+        error_logs = {"dropped_errors": results["dropped"]}
         print(f"\n📊 No valid results!")
         
     return final_results, error_logs
