@@ -87,6 +87,15 @@ def parse_args():
     parser.add_argument("--bulletpoint_analyzer_threshold", type=float, default=0.90,
                         help="Similarity threshold for bulletpoint analyzer (0-1, default: 0.90)")
     
+    # Budget-limited reproduction: use only the first N samples of each split
+    # (deterministic, file order). Default None = use the full split.
+    parser.add_argument("--max_train", type=int, default=None,
+                        help="Use only the first N training samples")
+    parser.add_argument("--max_val", type=int, default=None,
+                        help="Use only the first N validation samples")
+    parser.add_argument("--max_test", type=int, default=None,
+                        help="Use only the first N test samples")
+
     # Output configuration
     parser.add_argument("--save_path", type=str, required=True,
                         help="Directory to save results")
@@ -198,6 +207,16 @@ def main():
         args.mode
     )
         
+    # Optional deterministic subsetting (first N samples)
+    if args.max_train is not None and train_samples:
+        train_samples = train_samples[:args.max_train]
+    if args.max_val is not None and val_samples:
+        val_samples = val_samples[:args.max_val]
+    if args.max_test is not None and test_samples:
+        test_samples = test_samples[:args.max_test]
+    print(f"Using {len(train_samples or [])} train / {len(val_samples or [])} val / "
+          f"{len(test_samples or [])} test samples after subsetting")
+
     # Load initial playbook (or use empty if None provided)
     initial_playbook = load_initial_playbook(args.initial_playbook_path)
     if initial_playbook:
@@ -241,6 +260,9 @@ def main():
         'curator_batch_size': args.curator_batch_size,
         'curator_num_groups': args.curator_num_groups,
         'augmented_shuffling': args.augmented_shuffling,
+        'max_train': args.max_train,
+        'max_val': args.max_val,
+        'max_test': args.max_test,
     }
     
     # Execute using the unified run method
