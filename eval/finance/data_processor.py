@@ -1,6 +1,7 @@
 import os
 import json
 from utils import extract_answer
+from eval.finance.grading import GRADERS
 from typing import List, Dict, Any, Tuple
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -73,14 +74,19 @@ class DataProcessor:
     Processor for handling data preprocessing, evaluation and accuracy computation.
     """
     
-    def __init__(self, task_name: str):
+    def __init__(self, task_name: str, grader: str = "strict"):
         """
         Initialize the data processor.
         
         Args:
             task_name: The name of the task
+            grader: Formula grader: 'strict' (original), 'robust' or 'tolerant'
+                    (see eval/finance/grading.py). Ignored for finer.
         """
         self.task_name = task_name
+        if grader not in GRADERS:
+            raise ValueError(f"Unknown grader {grader}; choose from {list(GRADERS)}")
+        self.grader = grader
     
     def process_task_data(self, raw_data: List[Dict]) -> List[Dict]:
         """
@@ -153,6 +159,8 @@ class DataProcessor:
     
     def _formula_answer_is_correct(self, predicted: str, ground_truth: str) -> bool:
         """formula dataset specific answer correctness check"""
+        if self.grader != "strict":
+            return GRADERS[self.grader](predicted, ground_truth)
         try:
             predicted = predicted.replace(",", "")
             ground_truth = ground_truth.replace(",", "")

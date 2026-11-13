@@ -87,6 +87,11 @@ def parse_args():
     parser.add_argument("--bulletpoint_analyzer_threshold", type=float, default=0.90,
                         help="Similarity threshold for bulletpoint analyzer (0-1, default: 0.90)")
     
+    # Grader for the formula task (reproducibility modification)
+    parser.add_argument("--grader", type=str, default="strict",
+                        choices=["strict", "robust", "tolerant"],
+                        help="Formula answer checker. 'strict' = original exact float match")
+
     # Budget-limited reproduction: use only the first N samples of each split
     # (deterministic, file order). Default None = use the full split.
     parser.add_argument("--max_train", type=int, default=None,
@@ -125,7 +130,7 @@ def load_data(data_path: str):
     print(f"Loaded {len(data)} samples from {data_path}")
     return data
 
-def preprocess_data(task_name, config, mode):
+def preprocess_data(task_name, config, mode, grader="strict"):
     """
     Load training and test data for the specified task.
     
@@ -140,7 +145,7 @@ def preprocess_data(task_name, config, mode):
         - For online mode: only test_samples
         - For eval_only mode: only test_samples
     """
-    processor = DataProcessor(task_name=task_name)
+    processor = DataProcessor(task_name=task_name, grader=grader)
     
     # For online and eval_only modes, only load test data
     if mode in ["online", "eval_only"]:
@@ -204,7 +209,8 @@ def main():
     train_samples, val_samples, test_samples, data_processor = preprocess_data(
         args.task_name, 
         task_config[args.task_name],
-        args.mode
+        args.mode,
+        grader=args.grader
     )
         
     # Optional deterministic subsetting (first N samples)
@@ -263,6 +269,7 @@ def main():
         'max_train': args.max_train,
         'max_val': args.max_val,
         'max_test': args.max_test,
+        'grader': args.grader,
     }
     
     # Execute using the unified run method
