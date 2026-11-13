@@ -31,6 +31,12 @@ def initialize_clients(api_provider):
         api_key = os.getenv('OPENAI_API_KEY', '')
         if not api_key:
             raise ValueError("OpenAI api key not found in environment variables")
+    elif api_provider == "deepseek":
+        # DeepSeek API is OpenAI-compatible. Base URL can be overridden for testing.
+        base_url = os.getenv('DEEPSEEK_BASE_URL', 'https://api.deepseek.com')
+        api_key = os.getenv('DEEPSEEK_API_KEY', '')
+        if not api_key:
+            raise ValueError("DeepSeek api key not found in environment variables (DEEPSEEK_API_KEY)")
     elif api_provider == "commonstack":
         # Use Commonstack API
         base_url = "https://api.commonstack.ai/v1"
@@ -39,7 +45,7 @@ def initialize_clients(api_provider):
             raise ValueError("Commonstack api key not found in environment variables")
     else:
         raise ValueError(
-            f"Invalid api_provider name: {api_provider}. Must be 'sambanova', 'together', 'openai', or 'commonstack'"
+            f"Invalid api_provider name: {api_provider}. Must be 'sambanova', 'together', 'openai', 'deepseek', or 'commonstack'"
         )
         
     generator_client = openai.OpenAI(api_key=api_key, base_url=base_url)

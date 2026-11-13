@@ -103,6 +103,10 @@ def timed_llm_call(client, api_provider, model, prompt, role, call_id, max_token
                 "response_length": len(response_content),
                 "prompt_num_tokens": response.usage.prompt_tokens,
                 "response_num_tokens": response.usage.completion_tokens,
+                # Reproducibility: record the model id actually served by the provider
+                "served_model": getattr(response, "model", None),
+                "system_fingerprint": getattr(response, "system_fingerprint", None),
+                "temperature": api_params.get("temperature"),
             }
             
             print(f"[{role.upper()}] Call {call_id} completed in {total_time:.2f}s")
