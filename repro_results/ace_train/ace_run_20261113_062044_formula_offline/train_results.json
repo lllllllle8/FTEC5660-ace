@@ -1,0 +1,113 @@
+{
+  "best_accuracy": 0.93,
+  "results": [
+    {
+      "epoch": 1,
+      "step": 20,
+      "train_result": {
+        "pre_train_accuracy": 0.55,
+        "post_train_accuracy": 0.75
+      },
+      "val_result": {
+        "accuracy": 0.85,
+        "correct": 85,
+        "total": 100,
+        "no_answer": 2,
+        "requested": 100,
+        "dropped": 0
+      },
+      "playbook_num_tokens": 2433,
+      "playbook_length": 9698,
+      "playbook_stats": {
+        "total_bullets": 25,
+        "high_performing": 0,
+        "problematic": 2,
+        "unused": 20,
+        "by_section": {
+          "FORMULAS & CALCULATIONS": {
+            "count": 24,
+            "helpful": 5,
+            "harmful": 2
+          },
+          "PROBLEM-SOLVING HEURISTICS": {
+            "count": 1,
+            "helpful": 0,
+            "harmful": 0
+          }
+        }
+      }
+    },
+    {
+      "epoch": 1,
+      "step": 40,
+      "train_result": {
+        "pre_train_accuracy": 0.725,
+        "post_train_accuracy": 0.85
+      },
+      "val_result": {
+        "accuracy": 0.88,
+        "correct": 88,
+        "total": 100,
+        "no_answer": 1,
+        "requested": 100,
+        "dropped": 0
+      },
+      "playbook_num_tokens": 3522,
+      "playbook_length": 14292,
+      "playbook_stats": {
+        "total_bullets": 38,
+        "high_performing": 1,
+        "problematic": 2,
+        "unused": 26,
+        "by_section": {
+          "FORMULAS & CALCULATIONS": {
+            "count": 36,
+            "helpful": 22,
+            "harmful": 2
+          },
+          "PROBLEM-SOLVING HEURISTICS": {
+            "count": 2,
+            "helpful": 0,
+            "harmful": 0
+          }
+        }
+      }
+    },
+    {
+      "epoch": 1,
+      "step": 60,
+      "train_result": {
+        "pre_train_accuracy": 0.7666666666666667,
+        "post_train_accuracy": 0.85
+      },
+      "val_result": {
+        "accuracy": 0.93,
+        "correct": 93,
+        "total": 100,
+        "no_answer": 1,
+        "requested": 100,
+        "dropped": 0
+      },
+      "playbook_num_tokens": 5043,
+      "playbook_length": 20359,
+      "playbook_stats": {
+        "total_bullets": 52,
+        "high_performing": 1,
+        "problematic": 2,
+        "unused": 30,
+        "by_section": {
+          "FORMULAS & CALCULATIONS": {
+            "count": 50,
+            "helpful": 45,
+            "harmful": 3
+          },
+          "PROBLEM-SOLVING HEURISTICS": {
+            "count": 2,
+            "helpful": 3,
+            "harmful": 0
+          }
+        }
+      }
+    }
+  ]
+}

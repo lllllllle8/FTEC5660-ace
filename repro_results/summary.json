@@ -1,0 +1,489 @@
+{
+  "runs": [
+    {
+      "cond": "baseline",
+      "file": "results/baseline/t1/ace_run_20261113_062045_formula_eval_only/test_test_results.json",
+      "strict": 0.685,
+      "strict_correct": 137,
+      "robust": 0.685,
+      "robust_correct": 137,
+      "tolerant": 0.72,
+      "tolerant_correct": 144,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.685,
+      "robust_over_requested": 0.685,
+      "original_reported_accuracy": 0.685,
+      "taxonomy": {
+        "percent_scale": 16,
+        "correct": 137,
+        "near_miss_1pct": 5,
+        "wrong_value": 33,
+        "rounding_0.01": 7,
+        "no_parsable_number": 2
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 200,
+        "prompt_tokens": 88127,
+        "completion_tokens": 48237,
+        "call_seconds": 390.289589881897,
+        "role_generator": 200,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "baseline",
+      "file": "results/baseline/t2/ace_run_20261113_062126_formula_eval_only/test_test_results.json",
+      "strict": 0.67,
+      "strict_correct": 134,
+      "robust": 0.675,
+      "robust_correct": 135,
+      "tolerant": 0.72,
+      "tolerant_correct": 144,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.67,
+      "robust_over_requested": 0.675,
+      "original_reported_accuracy": 0.67,
+      "taxonomy": {
+        "percent_scale": 18,
+        "correct": 134,
+        "near_miss_1pct": 5,
+        "wrong_value": 31,
+        "rounding_0.01": 9,
+        "no_parsable_number": 2,
+        "format_or_precision": 1
+      },
+      "flips": [
+        {
+          "index": 161,
+          "prediction": "0.1045",
+          "ground_truth": "0.1",
+          "is_correct": false
+        }
+      ],
+      "n_flips": 1,
+      "cost": {
+        "calls": 200,
+        "prompt_tokens": 88127,
+        "completion_tokens": 44214,
+        "call_seconds": 380.82940673828125,
+        "role_generator": 200,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "baseline",
+      "file": "results/baseline/t3/ace_run_20261113_062205_formula_eval_only/test_test_results.json",
+      "strict": 0.695,
+      "strict_correct": 139,
+      "robust": 0.695,
+      "robust_correct": 139,
+      "tolerant": 0.74,
+      "tolerant_correct": 148,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.695,
+      "robust_over_requested": 0.695,
+      "original_reported_accuracy": 0.695,
+      "taxonomy": {
+        "correct": 139,
+        "percent_scale": 15,
+        "near_miss_1pct": 4,
+        "wrong_value": 32,
+        "rounding_0.01": 9,
+        "no_parsable_number": 1
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 200,
+        "prompt_tokens": 88127,
+        "completion_tokens": 50197,
+        "call_seconds": 415.935585975647,
+        "role_generator": 200,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "baseline_in_train",
+      "file": "results/ace_train/ace_run_20261113_062044_formula_offline/initial_test_results.json",
+      "strict": 0.7,
+      "strict_correct": 140,
+      "robust": 0.715,
+      "robust_correct": 143,
+      "tolerant": 0.75,
+      "tolerant_correct": 150,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.7,
+      "robust_over_requested": 0.715,
+      "original_reported_accuracy": 0.7,
+      "taxonomy": {
+        "correct": 140,
+        "percent_scale": 14,
+        "wrong_value": 32,
+        "rounding_0.01": 7,
+        "near_miss_1pct": 4,
+        "format_or_precision": 3
+      },
+      "flips": [
+        {
+          "index": 81,
+          "prediction": "Insufficient information to calculate adjusted market capitalization; value of new shares = 170000000.0",
+          "ground_truth": "170000000.0",
+          "is_correct": false
+        },
+        {
+          "index": 161,
+          "prediction": "0.1045",
+          "ground_truth": "0.1",
+          "is_correct": false
+        },
+        {
+          "index": 190,
+          "prediction": "0.030225",
+          "ground_truth": "0.03",
+          "is_correct": false
+        }
+      ],
+      "n_flips": 3,
+      "cost": {
+        "calls": 962,
+        "prompt_tokens": 3099203,
+        "completion_tokens": 299324,
+        "call_seconds": 2228.783852815628,
+        "role_generator": 838,
+        "role_reflector": 64,
+        "role_curator": 60,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "ace",
+      "file": "results/ace_train/ace_run_20261113_062044_formula_offline/final_test_results.json",
+      "strict": 0.83,
+      "strict_correct": 166,
+      "robust": 0.83,
+      "robust_correct": 166,
+      "tolerant": 0.86,
+      "tolerant_correct": 172,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.83,
+      "robust_over_requested": 0.83,
+      "original_reported_accuracy": 0.83,
+      "taxonomy": {
+        "correct": 166,
+        "near_miss_1pct": 5,
+        "wrong_value": 15,
+        "rounding_0.01": 6,
+        "no_parsable_number": 8
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 962,
+        "prompt_tokens": 3099203,
+        "completion_tokens": 299324,
+        "call_seconds": 2228.783852815628,
+        "role_generator": 838,
+        "role_reflector": 64,
+        "role_curator": 60,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "ace",
+      "file": "results/ace_eval/t2/ace_run_20261113_064042_formula_eval_only/test_test_results.json",
+      "strict": 0.845,
+      "strict_correct": 169,
+      "robust": 0.845,
+      "robust_correct": 169,
+      "tolerant": 0.875,
+      "tolerant_correct": 175,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.845,
+      "robust_over_requested": 0.845,
+      "original_reported_accuracy": 0.845,
+      "taxonomy": {
+        "correct": 169,
+        "near_miss_1pct": 5,
+        "rounding_0.01": 6,
+        "wrong_value": 14,
+        "no_parsable_number": 6
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 200,
+        "prompt_tokens": 1072727,
+        "completion_tokens": 79270,
+        "call_seconds": 534.6196472644806,
+        "role_generator": 200,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "ace",
+      "file": "results/ace_eval/t3/ace_run_20261113_064135_formula_eval_only/test_test_results.json",
+      "strict": 0.84,
+      "strict_correct": 168,
+      "robust": 0.84,
+      "robust_correct": 168,
+      "tolerant": 0.875,
+      "tolerant_correct": 175,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.84,
+      "robust_over_requested": 0.84,
+      "original_reported_accuracy": 0.84,
+      "taxonomy": {
+        "correct": 168,
+        "near_miss_1pct": 4,
+        "rounding_0.01": 7,
+        "no_parsable_number": 6,
+        "wrong_value": 15
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 200,
+        "prompt_tokens": 1072727,
+        "completion_tokens": 70537,
+        "call_seconds": 505.78349781036377,
+        "role_generator": 200,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    },
+    {
+      "cond": "ace_robust_fb",
+      "file": "results/ace_robust_train/ace_run_20261113_064030_formula_offline/final_test_results.json",
+      "strict": 0.81,
+      "strict_correct": 162,
+      "robust": 0.81,
+      "robust_correct": 162,
+      "tolerant": 0.84,
+      "tolerant_correct": 168,
+      "scored": 200,
+      "requested": 200,
+      "dropped": 0,
+      "strict_over_requested": 0.81,
+      "robust_over_requested": 0.81,
+      "original_reported_accuracy": 0.81,
+      "taxonomy": {
+        "correct": 162,
+        "no_parsable_number": 4,
+        "percent_scale": 4,
+        "rounding_0.01": 6,
+        "wrong_value": 19,
+        "near_miss_1pct": 5
+      },
+      "flips": [],
+      "n_flips": 0,
+      "cost": {
+        "calls": 961,
+        "prompt_tokens": 2518256,
+        "completion_tokens": 261021,
+        "call_seconds": 2055.8718144893646,
+        "role_generator": 838,
+        "role_curator": 60,
+        "role_reflector": 63,
+        "served_models": [
+          "deepseek-flash"
+        ]
+      }
+    }
+  ],
+  "aggregate": {
+    "baseline": {
+      "strict": [
+        0.6833333333333333,
+        0.012583057392117876
+      ],
+      "robust": [
+        0.685,
+        0.009999999999999953
+      ],
+      "tolerant": [
+        0.7266666666666667,
+        0.011547005383792526
+      ],
+      "strict_over_requested": [
+        0.6833333333333333,
+        0.012583057392117876
+      ],
+      "robust_over_requested": [
+        0.685,
+        0.009999999999999953
+      ],
+      "n_trials": 3,
+      "taxonomy": {
+        "percent_scale": 49,
+        "correct": 410,
+        "near_miss_1pct": 14,
+        "wrong_value": 96,
+        "rounding_0.01": 25,
+        "no_parsable_number": 5,
+        "format_or_precision": 1
+      }
+    },
+    "baseline_in_train": {
+      "strict": [
+        0.7,
+        0.0
+      ],
+      "robust": [
+        0.715,
+        0.0
+      ],
+      "tolerant": [
+        0.75,
+        0.0
+      ],
+      "strict_over_requested": [
+        0.7,
+        0.0
+      ],
+      "robust_over_requested": [
+        0.715,
+        0.0
+      ],
+      "n_trials": 1,
+      "taxonomy": {
+        "correct": 140,
+        "percent_scale": 14,
+        "wrong_value": 32,
+        "rounding_0.01": 7,
+        "near_miss_1pct": 4,
+        "format_or_precision": 3
+      }
+    },
+    "ace": {
+      "strict": [
+        0.8383333333333333,
+        0.00763762615825974
+      ],
+      "robust": [
+        0.8383333333333333,
+        0.00763762615825974
+      ],
+      "tolerant": [
+        0.87,
+        0.008660254037844393
+      ],
+      "strict_over_requested": [
+        0.8383333333333333,
+        0.00763762615825974
+      ],
+      "robust_over_requested": [
+        0.8383333333333333,
+        0.00763762615825974
+      ],
+      "n_trials": 3,
+      "taxonomy": {
+        "correct": 503,
+        "near_miss_1pct": 14,
+        "wrong_value": 44,
+        "rounding_0.01": 19,
+        "no_parsable_number": 20
+      }
+    },
+    "ace_robust_fb": {
+      "strict": [
+        0.81,
+        0.0
+      ],
+      "robust": [
+        0.81,
+        0.0
+      ],
+      "tolerant": [
+        0.84,
+        0.0
+      ],
+      "strict_over_requested": [
+        0.81,
+        0.0
+      ],
+      "robust_over_requested": [
+        0.81,
+        0.0
+      ],
+      "n_trials": 1,
+      "taxonomy": {
+        "correct": 162,
+        "no_parsable_number": 4,
+        "percent_scale": 4,
+        "rounding_0.01": 6,
+        "wrong_value": 19,
+        "near_miss_1pct": 5
+      }
+    }
+  },
+  "train": {
+    "folder": "results/ace_train/ace_run_20261113_062044_formula_offline",
+    "best_val_accuracy": 0.93,
+    "curve": [
+      {
+        "step": 20,
+        "val_acc": 0.85,
+        "pre_train_acc": 0.55,
+        "post_train_acc": 0.75,
+        "playbook_tokens": 2433
+      },
+      {
+        "step": 40,
+        "val_acc": 0.88,
+        "pre_train_acc": 0.725,
+        "post_train_acc": 0.85,
+        "playbook_tokens": 3522
+      },
+      {
+        "step": 60,
+        "val_acc": 0.93,
+        "pre_train_acc": 0.7666666666666667,
+        "post_train_acc": 0.85,
+        "playbook_tokens": 5043
+      }
+    ],
+    "best_playbook_chars": 20359,
+    "best_playbook_bullets": 52,
+    "cost_all_calls": {
+      "calls": 962,
+      "prompt_tokens": 3099203,
+      "completion_tokens": 299324,
+      "call_seconds": 2228.783852815628,
+      "role_generator": 838,
+      "role_reflector": 64,
+      "role_curator": 60,
+      "served_models": [
+        "deepseek-flash"
+      ]
+    }
+  }
+}
