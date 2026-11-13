@@ -6,7 +6,8 @@ Self-Improving Language Models* (Zhang et al., arXiv:2510.04618, ICLR 2026):
 the **Formula** (XBRL financial numerical reasoning) accuracy of
 
 * **R1** the base LLM with an empty context (paper: 67.5%), and
-* **R2** ACE offline adaptation with ground-truth feedback (paper: 85.5%, Table 2),
+* **R2** ACE offline adaptation with ground-truth feedback (paper: 85.5%, Table 2, p. 8, Section 4.4;
+  the 76.5% shown for ACE in the Formula panel of Figure 1 matches Table 2's *online* ACE row),
 
 and makes one measurable modification (a robust answer grader, see below).
 
@@ -34,7 +35,14 @@ cp .env.example .env                               # then put your key in .env:
 
 Never commit `.env` (it is in `.gitignore`).
 
-## Run
+## Run on Google Colab
+
+Open `notebooks/colab_repro.ipynb` in Colab (File → Upload notebook, or open it from GitHub).
+It installs only `openai tiktoken python-dotenv` with pip, reads `DEEPSEEK_API_KEY` from Colab
+Secrets, runs the stages below with `PY=python`, and copies `results/` and `logs/` to Google
+Drive after each stage. A CPU runtime is enough.
+
+## Run locally
 
 ```bash
 bash scripts/run_repro.sh smoke       # 5 questions, checks the key works
